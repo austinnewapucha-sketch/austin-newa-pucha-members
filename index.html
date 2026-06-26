@@ -1,0 +1,1224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Austin Newa Pucha Members</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap');
+
+/* ── RESET & TOKENS ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --ink:     #1a1a2e;
+  --muted:   #6b6b80;
+  --border:  #e2e2ec;
+  --bg:      #f7f7fb;
+  --white:   #ffffff;
+  --accent:  #4f46e5;
+  --accent2: #7c3aed;
+  --success: #059669;
+  --error:   #dc2626;
+  --gold:    #c8a84b;
+}
+body { font-family: 'Inter', sans-serif; background: var(--bg); color: var(--ink); min-height: 100vh; }
+
+/* ── NAV ── */
+nav {
+  background: var(--white); border-bottom: 1px solid var(--border);
+  padding: 0 2rem; display: flex; align-items: center;
+  justify-content: space-between; height: 60px;
+  position: sticky; top: 0; z-index: 100;
+}
+.nav-brand { font-family: 'Playfair Display', serif; font-size: 1.15rem; color: var(--ink); }
+.nav-brand span { color: var(--gold); }
+.nav-tabs { display: flex; gap: 4px; }
+.nav-tab {
+  padding: 6px 16px; border-radius: 6px; font-size: 13px;
+  font-weight: 500; cursor: pointer; border: none;
+  background: transparent; color: var(--muted); transition: all 0.15s;
+  font-family: 'Inter', sans-serif;
+}
+.nav-tab:hover { background: var(--bg); color: var(--ink); }
+.nav-tab.active { background: var(--accent); color: #fff; }
+
+/* ── PAGES ── */
+.page { display: none; }
+.page.active { display: block; }
+
+/* ── HERO ── */
+.form-hero {
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d2b55 100%);
+  color: #fff; padding: 3.5rem 2rem 5rem;
+  text-align: center; position: relative; overflow: hidden;
+}
+.form-hero::before {
+  content: ''; position: absolute;
+  width: 400px; height: 400px;
+  background: radial-gradient(circle, rgba(79,70,229,0.3) 0%, transparent 70%);
+  top: -100px; right: -100px; border-radius: 50%;
+}
+.hero-eyebrow {
+  display: inline-block; font-size: 11px; font-weight: 600;
+  letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
+  margin-bottom: 1rem; border: 1px solid rgba(200,168,75,0.4);
+  padding: 4px 14px; border-radius: 20px;
+}
+.form-hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 700;
+  line-height: 1.15; margin-bottom: 0.75rem;
+}
+.form-hero p { color: rgba(255,255,255,0.6); font-size: 0.95rem; max-width: 420px; margin: 0 auto; line-height: 1.6; }
+
+/* ── FORM CARD ── */
+.form-card {
+  background: var(--white); border: 1px solid var(--border);
+  border-radius: 16px; padding: 2.5rem;
+  max-width: 620px; margin: -2.5rem auto 3rem;
+  position: relative; z-index: 10;
+  box-shadow: 0 4px 24px rgba(26,26,46,0.08);
+}
+
+/* ── SECTIONS ── */
+.section-title {
+  font-size: 13px; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.08em; color: var(--accent);
+  margin: 1.75rem 0 1rem; padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+.section-title:first-child { margin-top: 0; }
+
+/* ── FORM FIELDS ── */
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media(max-width:500px){ .form-row { grid-template-columns: 1fr; } }
+
+.form-group { margin-bottom: 1rem; }
+.form-group label { display: block; font-size: 13px; font-weight: 500; color: var(--ink); margin-bottom: 5px; }
+.form-group label .req { color: var(--accent); }
+.form-group input, .form-group select, .form-group textarea {
+  width: 100%; border: 1px solid var(--border); border-radius: 8px;
+  padding: 0 14px; font-size: 14px; font-family: 'Inter', sans-serif;
+  color: var(--ink); background: var(--white);
+  transition: border-color 0.15s, box-shadow 0.15s; outline: none;
+  height: 44px;
+}
+.form-group textarea { height: auto; padding: 10px 14px; resize: vertical; min-height: 90px; }
+.form-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b6b80' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 36px; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+  border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79,70,229,0.1);
+}
+.form-group input.error, .form-group select.error { border-color: var(--error); }
+.field-error { font-size: 12px; color: var(--error); margin-top: 5px; display: none; font-weight: 500; padding-left: 2px; }
+.field-error.show { display: block !important; }
+
+.form-error-banner { display: none; background: #fef2f2; border: 1px solid #fecaca; border-radius: 10px; padding: 12px 16px; margin-bottom: 1rem; font-size: 13px; color: var(--error); font-weight: 500; }
+.form-error-banner.show { display: block !important; }
+
+/* ── SKILLS ── */
+.skills-input-wrap { display: flex; gap: 8px; }
+.skills-input-wrap input { flex: 1; }
+.add-skill-btn {
+  height: 44px; padding: 0 16px; background: var(--bg);
+  border: 1px solid var(--border); border-radius: 8px;
+  font-size: 13px; font-weight: 500; cursor: pointer;
+  white-space: nowrap; color: var(--ink); font-family: 'Inter', sans-serif;
+  transition: all 0.15s; flex-shrink: 0;
+}
+.add-skill-btn:hover { background: var(--border); }
+.skills-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.skill-tag {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: #ede9fe; color: #4c1d95;
+  border-radius: 20px; padding: 4px 12px; font-size: 13px; font-weight: 500;
+}
+.skill-tag button {
+  background: none; border: none; cursor: pointer;
+  color: #7c3aed; font-size: 14px; line-height: 1;
+  padding: 0; display: flex; align-items: center;
+}
+.skill-tag button:hover { color: #4c1d95; }
+
+/* ── FAMILY MEMBERS ── */
+.family-list { display: flex; flex-direction: column; gap: 12px; margin-bottom: 12px; }
+.family-item {
+  background: var(--bg); border: 1px solid var(--border);
+  border-radius: 10px; padding: 1rem;
+  position: relative;
+}
+.family-item-header {
+  font-size: 12px; font-weight: 600; color: var(--muted);
+  text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 10px;
+}
+.remove-family {
+  position: absolute; top: 10px; right: 10px;
+  background: none; border: none; color: #fca5a5;
+  cursor: pointer; font-size: 16px; line-height: 1;
+  padding: 2px 5px; border-radius: 4px;
+  transition: all 0.1s;
+}
+.remove-family:hover { background: #fef2f2; color: var(--error); }
+.add-family-btn {
+  width: 100%; height: 42px; border: 1.5px dashed var(--border);
+  border-radius: 8px; background: transparent;
+  font-size: 13px; font-weight: 500; color: var(--muted);
+  cursor: pointer; font-family: 'Inter', sans-serif;
+  transition: all 0.15s;
+}
+.add-family-btn:hover { border-color: var(--accent); color: var(--accent); background: #eef2ff; }
+
+/* ── SUBMIT ── */
+.submit-btn {
+  width: 100%; height: 50px; background: var(--accent);
+  color: #fff; border: none; border-radius: 8px;
+  font-size: 15px; font-weight: 600; font-family: 'Inter', sans-serif;
+  cursor: pointer; transition: background 0.15s, transform 0.1s;
+  margin-top: 0.75rem;
+}
+.submit-btn:hover { background: #4338ca; }
+.submit-btn:active { transform: scale(0.99); }
+.submit-btn:disabled { background: #a5b4fc; cursor: not-allowed; }
+
+/* ── SUCCESS ── */
+.success-msg { display: none; text-align: center; padding: 2rem 1rem; }
+.success-msg.show { display: block; }
+.success-icon {
+  width: 60px; height: 60px; background: #d1fae5; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1rem; font-size: 1.6rem;
+}
+.success-msg h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+.success-msg p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+.add-another {
+  margin-top: 1.25rem; padding: 9px 22px;
+  border: 1px solid var(--border); border-radius: 6px;
+  background: var(--white); font-size: 13px; font-weight: 500;
+  cursor: pointer; color: var(--ink); font-family: 'Inter', sans-serif;
+}
+.add-another:hover { background: var(--bg); }
+
+/* ── API STATUS BADGE ── */
+.api-status {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 500; padding: 4px 10px;
+  border-radius: 20px; margin-bottom: 1.25rem;
+}
+.api-status.connected { background: #d1fae5; color: #065f46; }
+.api-status.disconnected { background: #fef3c7; color: #92400e; }
+.api-status .dot { width: 7px; height: 7px; border-radius: 50%; }
+.api-status.connected .dot { background: #059669; }
+.api-status.disconnected .dot { background: #d97706; }
+
+/* ── ADMIN ── */
+.admin-wrap { max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem 4rem; }
+.admin-header {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;
+}
+.admin-header h2 { font-family: 'Playfair Display', serif; font-size: 1.5rem; }
+.admin-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.btn-sm {
+  padding: 7px 14px; font-size: 13px; font-weight: 500;
+  border-radius: 6px; cursor: pointer; font-family: 'Inter', sans-serif;
+  transition: all 0.15s; border: 1px solid var(--border);
+  background: var(--white); color: var(--ink);
+}
+.btn-sm:hover { background: var(--bg); }
+.btn-sm.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+.btn-sm.primary:hover { background: #4338ca; }
+.btn-sm.danger { color: var(--error); border-color: #fecaca; }
+.btn-sm.danger:hover { background: #fef2f2; }
+
+.stats-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 1.5rem; }
+.stat-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.25rem; }
+.stat-label { font-size: 11px; color: var(--muted); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
+.stat-value { font-size: 1.75rem; font-weight: 600; color: var(--ink); }
+.stat-value.accent { color: var(--accent); }
+
+.table-controls { display: flex; gap: 10px; margin-bottom: 1rem; flex-wrap: wrap; }
+.search-input {
+  flex: 1; min-width: 200px; height: 38px;
+  border: 1px solid var(--border); border-radius: 8px;
+  padding: 0 14px; font-size: 13px; font-family: 'Inter', sans-serif;
+  outline: none; color: var(--ink); background: var(--white);
+}
+.search-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79,70,229,0.1); }
+
+.table-wrap { background: var(--white); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; min-width: 700px; }
+thead th {
+  background: var(--bg); font-size: 11px; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted);
+  padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border);
+  cursor: pointer; user-select: none; white-space: nowrap;
+}
+thead th:hover { color: var(--ink); }
+.sort-icon { opacity: 0.4; margin-left: 3px; }
+.sorted .sort-icon { opacity: 1; color: var(--accent); }
+
+tbody tr { transition: background 0.1s; }
+tbody tr:hover { background: #fafafe; }
+tbody td { padding: 11px 14px; font-size: 13px; border-bottom: 1px solid var(--border); color: var(--ink); vertical-align: top; }
+tbody tr:last-child td { border-bottom: none; }
+
+.avatar {
+  width: 30px; height: 30px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--accent), var(--accent2));
+  color: #fff; font-size: 11px; font-weight: 600;
+  display: inline-flex; align-items: center; justify-content: center;
+  margin-right: 8px; flex-shrink: 0;
+}
+.name-cell { display: flex; align-items: center; }
+.td-muted { color: var(--muted); font-size: 12px; }
+
+.skill-pill {
+  display: inline-block; background: #ede9fe; color: #4c1d95;
+  border-radius: 12px; padding: 2px 9px; font-size: 11px; font-weight: 500;
+  margin: 2px 2px 2px 0;
+}
+.family-pill {
+  display: inline-block; background: #e0f2fe; color: #075985;
+  border-radius: 12px; padding: 2px 9px; font-size: 11px; font-weight: 500;
+  margin: 2px 2px 2px 0;
+}
+
+.del-btn {
+  background: none; border: none; color: #fca5a5;
+  cursor: pointer; font-size: 15px; padding: 3px 6px;
+  border-radius: 4px; transition: all 0.1s;
+}
+.del-btn:hover { background: #fef2f2; color: var(--error); }
+
+.expand-btn {
+  background: none; border: none; color: var(--muted);
+  cursor: pointer; font-size: 13px; padding: 2px 6px;
+  border-radius: 4px; transition: all 0.1s;
+}
+.expand-btn:hover { background: var(--bg); color: var(--ink); }
+
+.empty-state { padding: 3rem; text-align: center; color: var(--muted); }
+.empty-state div { font-size: 2rem; }
+.empty-state p { font-size: 14px; margin-top: 8px; }
+
+/* ── DETAIL DRAWER ── */
+.drawer-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(26,26,46,0.4); z-index: 200;
+}
+.drawer-overlay.open { display: block; }
+.drawer {
+  position: fixed; right: 0; top: 0; bottom: 0;
+  width: 380px; max-width: 95vw;
+  background: var(--white); z-index: 201;
+  transform: translateX(100%); transition: transform 0.3s ease;
+  overflow-y: auto; padding: 2rem 1.5rem;
+  box-shadow: -4px 0 24px rgba(26,26,46,0.12);
+}
+.drawer.open { transform: translateX(0); }
+.drawer-close {
+  background: none; border: none; cursor: pointer;
+  font-size: 20px; color: var(--muted); float: right; padding: 0;
+}
+.drawer-close:hover { color: var(--ink); }
+.drawer h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; margin-bottom: 1.5rem; }
+.detail-row { margin-bottom: 1rem; }
+.detail-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: var(--muted); margin-bottom: 3px; }
+.detail-value { font-size: 14px; color: var(--ink); }
+.detail-section { margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--border); }
+
+/* ── DUPLICATE WARNING ── */
+.dup-warning {
+  display: none; background: #fef3c7; border: 1px solid #fcd34d;
+  border-radius: 10px; padding: 1rem 1.25rem; margin-bottom: 1.25rem;
+}
+.dup-warning.show { display: block; }
+.dup-warning-title {
+  font-size: 13px; font-weight: 600; color: #92400e; margin-bottom: 6px;
+  display: flex; align-items: center; gap: 6px;
+}
+.dup-warning-body { font-size: 13px; color: #78350f; line-height: 1.5; }
+.dup-warning-body strong { font-weight: 600; }
+.dup-actions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
+.dup-btn {
+  padding: 6px 14px; font-size: 12px; font-weight: 500;
+  border-radius: 6px; cursor: pointer; font-family: 'Inter', sans-serif;
+  transition: all 0.15s; border: 1px solid #fcd34d; background: #fffbeb; color: #92400e;
+}
+.dup-btn:hover { background: #fef3c7; }
+.dup-btn.proceed { background: #92400e; color: #fff; border-color: #92400e; }
+.dup-btn.proceed:hover { background: #78350f; }
+
+/* ── ADMIN DUPE BADGE ── */
+.dup-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  background: #fef3c7; color: #92400e;
+  border-radius: 12px; padding: 2px 9px; font-size: 11px; font-weight: 600;
+  margin-left: 6px; vertical-align: middle;
+}
+
+/* ── PASSWORD MODAL ── */
+.modal-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(26,26,46,0.6); z-index: 300;
+  align-items: center; justify-content: center;
+}
+.modal-overlay.open { display: flex; }
+.modal-box {
+  background: var(--white); border-radius: 16px;
+  padding: 2rem; width: 340px; max-width: 90vw;
+  box-shadow: 0 8px 40px rgba(26,26,46,0.2);
+  text-align: center;
+}
+.modal-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+.modal-box h3 { font-family: "Playfair Display", serif; font-size: 1.2rem; margin-bottom: 0.4rem; }
+.modal-box p { font-size: 13px; color: var(--muted); margin-bottom: 1.25rem; }
+.modal-input {
+  width: 100%; height: 44px; border: 1px solid var(--border);
+  border-radius: 8px; padding: 0 14px; font-size: 14px;
+  font-family: "Inter", sans-serif; outline: none; color: var(--ink);
+  text-align: center; letter-spacing: 0.15em;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.modal-input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px rgba(79,70,229,0.1); }
+.modal-input.wrong { border-color: var(--error); animation: shake 0.3s ease; }
+.modal-btn {
+  width: 100%; height: 44px; background: var(--accent); color: #fff;
+  border: none; border-radius: 8px; font-size: 14px; font-weight: 600;
+  font-family: "Inter", sans-serif; cursor: pointer; margin-top: 10px;
+  transition: background 0.15s;
+}
+.modal-btn:hover { background: #4338ca; }
+.modal-error { font-size: 12px; color: var(--error); margin-top: 8px; display: none; font-weight: 500; }
+.modal-error.show { display: block; }
+@keyframes shake {
+  0%,100% { transform: translateX(0); }
+  25% { transform: translateX(-6px); }
+  75% { transform: translateX(6px); }
+}
+
+/* ── TOAST ── */
+.toast {
+  position: fixed; bottom: 24px; left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--ink); color: #fff; padding: 10px 20px;
+  border-radius: 8px; font-size: 13px; font-weight: 500;
+  opacity: 0; transition: all 0.3s; z-index: 999; pointer-events: none;
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+.toast.success-toast { background: #065f46; }
+.toast.error-toast { background: var(--error); }
+
+@media(max-width:600px){
+  .form-card { margin: -2rem 1rem 2rem; padding: 1.5rem; }
+  nav { padding: 0 1rem; }
+  .admin-wrap { padding: 1.25rem 1rem 3rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════
+     CONFIGURATION — fill in when ready
+     ══════════════════════════════════════ -->
+<script>
+  // ─────────────────────────────────────────────────────────────────
+  // GOOGLE SHEETS SETUP (fill these in after following the guide)
+  //
+  //  Step 1: Go to script.google.com → New project
+  //  Step 2: Paste the Apps Script from the README section below
+  //  Step 3: Deploy → New deployment → Web app → Anyone can access
+  //  Step 4: Copy the web app URL and paste it below
+  // ─────────────────────────────────────────────────────────────────
+  const SHEET_API_URL = 'https://script.google.com/macros/s/AKfycbwGrIo0P6pY5xIEmv0WPGL95S_74omdSn2pNERMYp0OwNO_qRiq5rE25qcTymuOz98N/exec';
+  // Example: 'https://script.google.com/macros/s/AKfycb.../exec'
+  // ─────────────────────────────────────────────────────────────────
+
+  const API_READY = (function() { try { return typeof SHEET_API_URL === 'string' && SHEET_API_URL.trim().length > 10 && SHEET_API_URL.trim().indexOf('YOUR_GOOGLE') === -1 && SHEET_API_URL.trim().indexOf('https') === 0; } catch(e){ return false; } })();
+</script>
+
+<nav>
+  <div class="nav-brand">Austin <span>Newa Pucha</span> Members</div>
+  <div class="nav-tabs">
+    <button class="nav-tab active" onclick="showPage('form', this)">Register</button>
+    <button class="nav-tab" onclick="showPage('admin', this)">Admin</button>
+  </div>
+</nav>
+
+<!-- ══════════════════ FORM PAGE ══════════════════ -->
+<div id="page-form" class="page active">
+  <div class="form-hero">
+    <div class="hero-eyebrow">Membership Portal</div>
+    <h1>Join Austin Newa Pucha Members</h1>
+    <p>Register your details and your family to become part of our community.</p>
+  </div>
+
+  <div class="form-card">
+    <div id="form-area">
+
+      <!-- API status -->
+      <div id="api-badge" class="api-status disconnected">
+        <div class="dot"></div>
+        <span id="api-badge-text">Google Sheets not connected — saving locally</span>
+      </div>
+
+      <!-- Validation error banner -->
+      <div class="form-error-banner" id="form-error-banner">Please fill in all required fields before submitting.</div>
+
+      <!-- Personal info -->
+      <div class="section-title">Personal information</div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="f-name">Full name <span class="req">*</span></label>
+          <input type="text" id="f-name" placeholder="e.g. Priya Maharjan" autocomplete="name">
+          <div class="field-error" id="err-name">Please enter your full name.</div>
+        </div>
+        <div class="form-group">
+          <label for="f-city">City <span class="req">*</span></label>
+          <input type="text" id="f-city" placeholder="e.g. Austin, Kathmandu" autocomplete="address-level2">
+          <div class="field-error" id="err-city">Please enter your city.</div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="f-email">Email address <span class="req">*</span></label>
+          <input type="email" id="f-email" placeholder="you@example.com" autocomplete="email">
+          <div class="field-error" id="err-email">Please enter a valid email.</div>
+        </div>
+        <div class="form-group">
+          <label for="f-phone">Phone number <span class="req">*</span></label>
+          <input type="tel" id="f-phone" placeholder="+1 512 000 0000" autocomplete="tel">
+          <div class="field-error" id="err-phone">Please enter your phone number.</div>
+        </div>
+      </div>
+
+      <!-- Newari skills -->
+      <div class="section-title">Newari skills</div>
+      <div class="form-group">
+        <label>Add your skills <span style="color:var(--muted);font-weight:400">(e.g. Singing, Dhime, Charya Nritya)</span></label>
+        <div class="skills-input-wrap">
+          <input type="text" id="skill-input" placeholder="Type a skill and press Add" onkeydown="if(event.key==='Enter'){event.preventDefault();addSkill();}">
+          <button type="button" class="add-skill-btn" onclick="addSkill()">+ Add</button>
+        </div>
+        <div class="skills-tags" id="skills-tags"></div>
+      </div>
+
+      <!-- Family members -->
+      <div class="section-title">Family members</div>
+      <div class="family-list" id="family-list"></div>
+      <button type="button" class="add-family-btn" onclick="addFamilyRow()">+ Add family member</button>
+
+      <div class="dup-warning" id="dup-warning">
+        <div class="dup-warning-title">&#9888; Existing record found</div>
+        <div class="dup-warning-body" id="dup-warning-body"></div>
+        <div class="dup-actions">
+          <button class="dup-btn" onclick="dismissDupWarning()">Go back and edit</button>
+          <button class="dup-btn proceed" onclick="submitForm(true)">Register anyway</button>
+        </div>
+      </div>
+
+      <br>
+      <button class="submit-btn" id="submit-btn" onclick="submitForm(false)">Register as member</button>
+    </div>
+
+    <div class="success-msg" id="success-area">
+      <div class="success-icon">✓</div>
+      <h3>You're registered!</h3>
+      <p>Welcome to Austin Newa Pucha Members.<br>Your details have been saved successfully.</p>
+      <button class="add-another" onclick="resetForm()">Register another member</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ ADMIN PAGE ══════════════════ -->
+<div id="page-admin" class="page">
+  <div class="admin-wrap">
+    <div class="admin-header">
+      <h2>Member dashboard</h2>
+      <div class="admin-actions">
+        <button class="btn-sm" onclick="syncFromSheet()" id="sync-btn" title="Pull latest from Google Sheets">↻ Sync</button>
+        <button class="btn-sm" onclick="removeDuplicates()" id="dedup-btn">Remove duplicates</button>
+        <button class="btn-sm primary" onclick="exportCSV()">Export CSV</button>
+        <button class="btn-sm danger" onclick="clearAll()">Clear all</button>
+      </div>
+    </div>
+
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-label">Total members</div>
+        <div class="stat-value accent" id="stat-total">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Added today</div>
+        <div class="stat-value" id="stat-today">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">This week</div>
+        <div class="stat-value" id="stat-week">0</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">Total family</div>
+        <div class="stat-value" id="stat-family">0</div>
+      </div>
+    </div>
+
+    <div class="table-controls">
+      <input class="search-input" type="text" id="search-box" placeholder="Search name, city, email, skill…" oninput="renderTable()">
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th onclick="sortBy('name')">Name <span class="sort-icon" id="sort-name">↕</span></th>
+            <th onclick="sortBy('city')">City <span class="sort-icon" id="sort-city">↕</span></th>
+            <th onclick="sortBy('email')">Email <span class="sort-icon" id="sort-email">↕</span></th>
+            <th onclick="sortBy('phone')">Phone <span class="sort-icon" id="sort-phone">↕</span></th>
+            <th>Skills</th>
+            <th>Family</th>
+            <th onclick="sortBy('date')">Registered <span class="sort-icon" id="sort-date">↕</span></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="members-tbody"></tbody>
+      </table>
+      <div class="empty-state" id="empty-state">
+        <div>👥</div>
+        <p>No members yet. Registrations will appear here.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════ DETAIL DRAWER ══════════════════ -->
+<div class="drawer-overlay" id="drawer-overlay" onclick="closeDrawer()"></div>
+<div class="drawer" id="drawer">
+  <button class="drawer-close" onclick="closeDrawer()">✕</button>
+  <h3 id="drawer-name">Member detail</h3>
+  <div id="drawer-content"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<!-- ══════════════════ ADMIN PASSWORD MODAL ══════════════════ -->
+<div class="modal-overlay" id="admin-modal">
+  <div class="modal-box">
+    <div class="modal-icon">🔒</div>
+    <h3>Admin access</h3>
+    <p>Enter the password to view the member dashboard.</p>
+    <input class="modal-input" type="password" id="admin-password" placeholder="Password" onkeydown="if(event.key==='Enter') checkPassword()">
+    <div class="modal-error" id="pw-error">Incorrect password. Try again.</div>
+    <button class="modal-btn" onclick="checkPassword()">Unlock dashboard</button>
+  </div>
+</div>
+
+<!-- ══════════════════ APPS SCRIPT README ══════════════════
+To connect Google Sheets:
+
+1. Go to https://script.google.com → New project → paste this code:
+
+────────────────────────────────────────────
+function doPost(e) {
+  var sheet = SpreadsheetApp.openById('YOUR_SHEET_ID').getSheetByName('Members');
+  var data = JSON.parse(e.postData.contents);
+  if (!sheet.getLastRow() || sheet.getLastRow() === 0) {
+    sheet.appendRow(['ID','Name','City','Email','Phone','Skills','Family','Date']);
+  }
+  sheet.appendRow([
+    data.id, data.name, data.city, data.email, data.phone,
+    data.skills, data.family, data.date
+  ]);
+  return ContentService.createTextOutput(JSON.stringify({status:'ok'}))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function doGet(e) {
+  var sheet = SpreadsheetApp.openById('YOUR_SHEET_ID').getSheetByName('Members');
+  var rows = sheet.getDataRange().getValues();
+  var headers = rows[0];
+  var members = rows.slice(1).map(function(r){
+    var obj = {};
+    headers.forEach(function(h,i){ obj[h.toLowerCase()] = r[i]; });
+    return obj;
+  });
+  return ContentService.createTextOutput(JSON.stringify(members))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+────────────────────────────────────────────
+
+2. Replace YOUR_SHEET_ID with your Google Sheet ID (from the URL)
+3. Deploy → New deployment → Web app
+   - Execute as: Me
+   - Who has access: Anyone
+4. Copy the web app URL
+5. Paste it into SHEET_API_URL at the top of this file
+
+══════════════════════════════════════════════════ -->
+
+<script>
+// ── STORAGE ──
+function getMembers() {
+  try { return JSON.parse(localStorage.getItem('anm_members') || '[]'); }
+  catch { return []; }
+}
+function saveMembers(arr) { localStorage.setItem('anm_members', JSON.stringify(arr)); }
+
+// ── SKILLS ──
+let currentSkills = [];
+
+function addSkill() {
+  const input = document.getElementById('skill-input');
+  const val = input.value.trim();
+  if (!val || currentSkills.includes(val)) { input.value = ''; return; }
+  currentSkills.push(val);
+  input.value = '';
+  renderSkillTags();
+}
+
+function removeSkill(i) {
+  currentSkills.splice(i, 1);
+  renderSkillTags();
+}
+
+function renderSkillTags() {
+  const wrap = document.getElementById('skills-tags');
+  wrap.innerHTML = currentSkills.map((s, i) =>
+    `<span class="skill-tag">${s}<button onclick="removeSkill(${i})" title="Remove">✕</button></span>`
+  ).join('');
+}
+
+// ── FAMILY SKILLS ──
+let familySkills = {};
+
+function addFamilySkill(id) {
+  const input = document.getElementById('fm-skill-input-' + id);
+  if (!input) return;
+  const val = input.value.trim();
+  if (!val) return;
+  if (!familySkills[id]) familySkills[id] = [];
+  if (familySkills[id].includes(val)) { input.value = ''; return; }
+  familySkills[id].push(val);
+  input.value = '';
+  renderFamilySkillTags(id);
+}
+
+function removeFamilySkill(id, i) {
+  if (familySkills[id]) familySkills[id].splice(i, 1);
+  renderFamilySkillTags(id);
+}
+
+function renderFamilySkillTags(id) {
+  const wrap = document.getElementById('fm-skills-tags-' + id);
+  if (!wrap) return;
+  wrap.innerHTML = (familySkills[id] || []).map((s, i) =>
+    `<span class="skill-tag">${s}<button onclick="removeFamilySkill(${id}, ${i})" title="Remove">✕</button></span>`
+  ).join('');
+}
+
+// ── FAMILY ROWS ──
+let familyCount = 0;
+
+function addFamilyRow() {
+  familyCount++;
+  const id = familyCount;
+  const list = document.getElementById('family-list');
+  const div = document.createElement('div');
+  div.className = 'family-item';
+  div.id = 'family-' + id;
+  div.innerHTML = `
+    <div class="family-item-header">Family Member ${id}</div>
+    <button class="remove-family" onclick="removeFamilyRow(${id})" title="Remove">✕</button>
+    <div class="form-row">
+      <div class="form-group" style="margin-bottom:0">
+        <label>Full name</label>
+        <input type="text" placeholder="Full name" id="fm-name-${id}">
+      </div>
+      <div class="form-group" style="margin-bottom:0">
+        <label>Relationship</label>
+        <select id="fm-rel-${id}">
+          <option value="">Select…</option>
+          <option>Spouse</option>
+          <option>Child</option>
+          <option>Parent</option>
+          <option>Sibling</option>
+          <option>Other</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row" style="margin-top:10px">
+      <div class="form-group" style="margin-bottom:0">
+        <label>Phone</label>
+        <input type="tel" placeholder="Phone number" id="fm-phone-${id}">
+      </div>
+      <div class="form-group" style="margin-bottom:0">
+        <label>Email</label>
+        <input type="email" placeholder="email@example.com" id="fm-email-${id}">
+      </div>
+    </div>
+    <div class="form-group" style="margin-top:10px;margin-bottom:0">
+      <label>Newari skills <span style="color:var(--muted);font-weight:400">(e.g. Singing, Dhime)</span></label>
+      <div class="skills-input-wrap">
+        <input type="text" placeholder="Type a skill and press Add" id="fm-skill-input-${id}" onkeydown="if(event.key==='Enter'){event.preventDefault();addFamilySkill(${id});}" >
+        <button type="button" class="add-skill-btn" onclick="addFamilySkill(${id})">+ Add</button>
+      </div>
+      <div class="skills-tags" id="fm-skills-tags-${id}"></div>
+    </div>
+  `;
+  list.appendChild(div);
+}
+
+function removeFamilyRow(id) {
+  const el = document.getElementById('family-' + id);
+  if (el) el.remove();
+}
+
+function collectFamily() {
+  const items = document.querySelectorAll('.family-item');
+  const result = [];
+  items.forEach(item => {
+    const id = item.id.replace('family-', '');
+    const name  = (document.getElementById('fm-name-'  + id) || {}).value || '';
+    const rel   = (document.getElementById('fm-rel-'   + id) || {}).value || '';
+    const phone = (document.getElementById('fm-phone-' + id) || {}).value || '';
+    const email = (document.getElementById('fm-email-' + id) || {}).value || '';
+    const skills = (familySkills[id] || []).join(', ');
+    if (name.trim()) result.push({ name: name.trim(), relationship: rel, phone: phone.trim(), email: email.trim(), skills: skills });
+  });
+  return result;
+}
+
+// ── VALIDATION ──
+function showFieldError(id, errId, msg) {
+  const el = document.getElementById(id);
+  const err = document.getElementById(errId);
+  if (el) el.style.borderColor = 'var(--error)';
+  if (err) { err.textContent = msg; err.style.display = 'block'; }
+}
+function clearFieldError(id, errId) {
+  const el = document.getElementById(id);
+  const err = document.getElementById(errId);
+  if (el) el.style.borderColor = '';
+  if (err) err.style.display = 'none';
+}
+function validate(id, errId, check, msg) {
+  const el = document.getElementById(id);
+  const val = el ? el.value.trim() : '';
+  const ok = check(val);
+  if (ok) { clearFieldError(id, errId); }
+  else { showFieldError(id, errId, msg || 'This field is required.'); }
+  if (el && !el._errListener) {
+    el._errListener = true;
+    el.addEventListener('input', function() {
+      clearFieldError(id, errId);
+      if (!document.querySelector('[style*="var(--error)"]')) {
+        const b = document.getElementById('form-error-banner');
+        if (b) b.style.display = 'none';
+      }
+    });
+  }
+  return ok;
+}
+
+// ── DUPLICATE CHECK ──
+function normalisePhone(p) { return String(p||'').replace(/[\s\-\(\)\+]/g,''); }
+function normaliseName(n)  { return String(n||'').toLowerCase().trim().replace(/\s+/g,' '); }
+
+function findDuplicate(name, phone) {
+  const members = getMembers();
+  const nn = normaliseName(name), np = normalisePhone(phone);
+  return members.find(m =>
+    normaliseName(m.name) === nn || normalisePhone(m.phone) === np
+  ) || null;
+}
+
+function dismissDupWarning() {
+  document.getElementById('dup-warning').classList.remove('show');
+}
+
+// ── SUBMIT ──
+async function submitForm(force) {
+  const okName  = validate('f-name',  'err-name',  v => v.length > 1,  'Please enter your full name.');
+  const okCity  = validate('f-city',  'err-city',  v => v.length > 1,  'Please enter your city.');
+  const okEmail = validate('f-email', 'err-email', v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v), 'Please enter a valid email address.');
+  const okPhone = validate('f-phone', 'err-phone', v => v.length > 5,  'Please enter your phone number.');
+  const banner = document.getElementById('form-error-banner');
+  if (!okName || !okCity || !okEmail || !okPhone) {
+    banner.style.display = 'block';
+    banner.textContent = 'Please fill in all required fields marked with *.';
+    // scroll to top of form card
+    document.getElementById('form-error-banner').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  banner.style.display = 'none';
+
+  const name  = document.getElementById('f-name').value.trim();
+  const phone = document.getElementById('f-phone').value.trim();
+
+  // Check for duplicate unless force=true
+  if (!force) {
+    const dup = findDuplicate(name, phone);
+    if (dup) {
+      const matchType = normaliseName(dup.name) === normaliseName(name) ? 'name' : 'phone number';
+      document.getElementById('dup-warning-body').innerHTML =
+        'A member with the same <strong>' + matchType + '</strong> already exists: ' +
+        '<strong>' + dup.name + '</strong> (' + dup.phone + '), registered on ' + fmtDate(dup.date) + '. ' +
+        'Please check before registering again.';
+      document.getElementById('dup-warning').classList.add('show');
+      document.getElementById('dup-warning').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      return;
+    }
+  }
+
+  document.getElementById('dup-warning').classList.remove('show');
+
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = true;
+  btn.textContent = 'Saving…';
+
+  const member = {
+    id:     Date.now(),
+    name:   name,
+    city:   document.getElementById('f-city').value.trim(),
+    email:  document.getElementById('f-email').value.trim(),
+    phone:  phone,
+    skills: currentSkills.join(', '),
+    family: JSON.stringify(collectFamily()),
+    date:   new Date().toISOString()
+  };
+
+  // Save locally first
+  const members = getMembers();
+  members.unshift(member);
+  saveMembers(members);
+
+  // Try Google Sheets
+  if (API_READY) {
+    try {
+      const form = new FormData();
+      form.append('data', JSON.stringify(member));
+      await fetch(SHEET_API_URL, { method: 'POST', body: form, mode: 'no-cors' });
+      showToast('Saved to Google Sheets ✓', 'success');
+    } catch (e) {
+      showToast('Saved locally (Sheet sync failed)', 'error');
+    }
+  }
+
+  btn.disabled = false;
+  btn.textContent = 'Register as member';
+  document.getElementById('form-area').style.display = 'none';
+  document.getElementById('success-area').classList.add('show');
+}
+
+// ── RESET ──
+function resetForm() {
+  ['f-name','f-city','f-email','f-phone'].forEach(id => {
+    document.getElementById(id).value = '';
+    document.getElementById(id).classList.remove('error');
+  });
+  ['err-name','err-city','err-email','err-phone'].forEach(id =>
+    document.getElementById(id).classList.remove('show')
+  );
+  currentSkills = [];
+  renderSkillTags();
+  document.getElementById('family-list').innerHTML = '';
+  familyCount = 0;
+  familySkills = {};
+  document.getElementById('form-area').style.display = 'block';
+  document.getElementById('success-area').classList.remove('show');
+}
+
+// ── NAV ──
+// ── PASSWORD ──
+const ADMIN_PASSWORD = 'austin2024'; // <-- CHANGE THIS to your own password
+let adminUnlocked = false;
+let pendingTabEl = null;
+
+function showPage(id, tabEl) {
+  if (id === 'admin' && !adminUnlocked) {
+    pendingTabEl = tabEl;
+    document.getElementById('admin-password').value = '';
+    document.getElementById('pw-error').classList.remove('show');
+    document.getElementById('admin-modal').classList.add('open');
+    setTimeout(() => document.getElementById('admin-password').focus(), 100);
+    return;
+  }
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  if (tabEl) tabEl.classList.add('active');
+  if (id === 'admin') { updateStats(); renderTable(); }
+}
+
+function checkPassword() {
+  const input = document.getElementById('admin-password');
+  const err = document.getElementById('pw-error');
+  if (input.value === ADMIN_PASSWORD) {
+    adminUnlocked = true;
+    document.getElementById('admin-modal').classList.remove('open');
+    showPage('admin', pendingTabEl);
+  } else {
+    input.classList.add('wrong');
+    err.classList.add('show');
+    setTimeout(() => input.classList.remove('wrong'), 400);
+    input.value = '';
+    input.focus();
+  }
+}
+
+// ── API STATUS BADGE ──
+function updateApiBadge() {
+  const badge = document.getElementById('api-badge');
+  const text  = document.getElementById('api-badge-text');
+  var url = (typeof SHEET_API_URL === 'string') ? SHEET_API_URL.trim() : '';
+  var ready = url.length > 10 && url.indexOf('YOUR_GOOGLE') === -1 && url.indexOf('https') === 0;
+  if (ready) {
+    badge.className = 'api-status connected';
+    text.textContent = 'Google Sheets connected';
+  } else {
+    badge.className = 'api-status disconnected';
+    text.textContent = 'Google Sheets not connected — saving locally';
+  }
+}
+
+// ── SYNC FROM SHEET ──
+async function syncFromSheet() {
+  if (!API_READY) { showToast('Google Sheets not configured yet', 'error'); return; }
+  const btn = document.getElementById('sync-btn');
+  btn.textContent = 'Syncing…'; btn.disabled = true;
+  try {
+    const res = await fetch(SHEET_API_URL + '?callback=', { mode: 'cors' });
+    const data = await res.json();
+    if (Array.isArray(data) && data.length) {
+      const mapped = data.map(r => ({
+        id:     r.id || Date.now(),
+        name:   r.name || '',
+        city:   r.city || '',
+        email:  r.email || '',
+        phone:  r.phone || '',
+        skills: r.skills || '',
+        family: r.family || '[]',
+        date:   r.date || new Date().toISOString()
+      }));
+      saveMembers(mapped);
+      updateStats(); renderTable();
+      showToast('Synced ' + mapped.length + ' members', 'success');
+    } else {
+      showToast('No data found in Sheet', 'error');
+    }
+  } catch(e) { showToast('Sync failed — check your API URL', 'error'); }
+  btn.textContent = '↻ Sync'; btn.disabled = false;
+}
+
+// ── ADMIN STATS ──
+function updateStats() {
+  const members = getMembers();
+  const now = new Date();
+  const todayStr = now.toDateString();
+  const weekAgo = new Date(now - 7*24*60*60*1000);
+  document.getElementById('stat-total').textContent = members.length;
+  document.getElementById('stat-today').textContent =
+    members.filter(m => new Date(m.date).toDateString() === todayStr).length;
+  document.getElementById('stat-week').textContent =
+    members.filter(m => new Date(m.date) >= weekAgo).length;
+  const totalFamily = members.reduce((acc, m) => {
+    try { return acc + JSON.parse(m.family || '[]').length; } catch { return acc; }
+  }, 0);
+  document.getElementById('stat-family').textContent = totalFamily;
+  // Highlight dedup button if dupes found
+  const btn = document.getElementById('dedup-btn');
+  if (btn) {
+    const names = {}, phones = {};
+    let dupCount = 0;
+    members.forEach(m => {
+      const nn = normaliseName(m.name), np = normalisePhone(m.phone);
+      if (names[nn] || phones[np]) dupCount++;
+      names[nn] = true; phones[np] = true;
+    });
+    if (dupCount > 0) {
+      btn.innerHTML = 'Remove duplicates <span class="dup-badge">' + dupCount + '</span>';
+      btn.style.borderColor = '#fcd34d'; btn.style.color = '#92400e'; btn.style.background = '#fffbeb';
+    } else {
+      btn.innerHTML = 'Remove duplicates'; btn.style = '';
+    }
+  }
+}
+
+// ── TABLE ──
+let sortField = 'date', sortAsc = false;
+
+function sortBy(field) {
+  if (sortField === field) { sortAsc = !sortAsc; }
+  else { sortField = field; sortAsc = true; }
+  document.querySelectorAll('.sort-icon').forEach(el => el.textContent = '↕');
+  const icon = document.getElementById('sort-' + field);
+  if (icon) { icon.textContent = sortAsc ? '↑' : '↓'; }
+  renderTable();
+}
+
+function initials(name) {
+  return (name || '?').split(' ').map(w => w[0] || '').join('').slice(0,2).toUpperCase();
+}
+function fmtDate(iso) {
+  return new Date(iso).toLocaleDateString('en-GB', { day:'numeric', month:'short', year:'numeric' });
+}
+function parseFamily(str) {
+  try { return JSON.parse(str || '[]'); } catch { return []; }
+}
+
+function renderTable() {
+  const q = (document.getElementById('search-box').value || '').toLowerCase();
+  let members = getMembers().filter(m =>
+    (m.name||'').toLowerCase().includes(q) ||
+    (m.city||'').toLowerCase().includes(q) ||
+    (m.email||'').toLowerCase().includes(q) ||
+    (m.phone||'').includes(q) ||
+    (m.skills||'').toLowerCase().includes(q)
+  );
+
+  members.sort((a, b) => {
+    let va = a[sortField] || '', vb = b[sortField] || '';
+    if (sortField === 'date') { va = new Date(va); vb = new Date(vb); }
+    else { va = String(va).toLowerCase(); vb = String(vb).toLowerCase(); }
+    return sortAsc ? (va > vb ? 1 : -1) : (va < vb ? 1 : -1);
+  });
+
+  const tbody = document.getElementById('members-tbody');
+  const empty = document.getElementById('empty-state');
+
+  if (!members.length) {
+    tbody.innerHTML = '';
+    empty.style.display = 'block';
+    return;
+  }
+  empty.style.display = 'none';
+
+  tbody.innerHTML = members.map(m => {
+    const skillTags = (m.skills || '').split(',').filter(Boolean).map(s =>
+      `<span class="skill-pill">${s.trim()}</span>`
+    ).join('');
+    const family = parseFamily(m.family);
+    const familyTags = family.slice(0,2).map(f =>
+      `<span class="family-pill">${f.name}${f.relationship ? ' · '+f.relationship : ''}</span>`
+    ).join('') + (family.length > 2 ? `<span class="family-pill">+${family.length-2}</span>` : '');
+
+    return `
+    <tr>
+      <td><div class="name-cell"><div class="avatar">${initials(m.name)}</div><span style="font-weight:500">${m.name}</span></div></td>
+      <td class="td-muted">${m.city || '—'}</td>
+      <td class="td-muted">${m.email}</td>
+      <td>${m.phone}</td>
+      <td>${skillTags || '<span class="td-muted">—</span>'}</td>
+      <td>${family.length ? familyTags : '<span class="td-muted">—</span>'}</td>
+      <td class="td-muted">${fmtDate(m.date)}</td>
+      <td style="white-space:nowrap">
+        <button class="expand-btn" onclick="openDrawer(${m.id})" title="View details">→</button>
+        <button class="del-btn" onclick="deleteMember(${m.id})" title="Remove">✕</button>
+      </td>
+    </tr>`;
+  }).join('');
+}
+
+// ── DRAWER ──
+function openDrawer(id) {
+  const m = getMembers().find(x => x.id == id);
+  if (!m) return;
+  const family = parseFamily(m.family);
+  const skills = (m.skills || '').split(',').filter(Boolean);
+
+  document.getElementById('drawer-name').textContent = m.name;
+  document.getElementById('drawer-content').innerHTML = `
+    <div class="detail-row"><div class="detail-label">City</div><div class="detail-value">${m.city || '—'}</div></div>
+    <div class="detail-row"><div class="detail-label">Email</div><div class="detail-value">${m.email}</div></div>
+    <div class="detail-row"><div class="detail-label">Phone</div><div class="detail-value">${m.phone}</div></div>
+    <div class="detail-row"><div class="detail-label">Registered</div><div class="detail-value">${fmtDate(m.date)}</div></div>
+    ${skills.length ? `
+    <div class="detail-section">
+      <div class="detail-label" style="margin-bottom:8px">Newari skills</div>
+      ${skills.map(s => `<span class="skill-pill" style="font-size:13px;padding:4px 12px">${s.trim()}</span>`).join('')}
+    </div>` : ''}
+    ${family.length ? `
+    <div class="detail-section">
+      <div class="detail-label" style="margin-bottom:10px">Family members (${family.length})</div>
+      ${family.map(f => `
+        <div style="background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:8px">
+          <div style="font-weight:500;font-size:14px">${f.name}</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px">
+            ${f.relationship ? f.relationship : ''}${f.phone ? (f.relationship ? ' · ' : '') + f.phone : ''}${f.email ? ' · ' + f.email : ''}${f.skills ? ' · ' + f.skills : ''}
+          </div>
+        </div>`).join('')}
+    </div>` : ''}
+  `;
+  document.getElementById('drawer-overlay').classList.add('open');
+  document.getElementById('drawer').classList.add('open');
+}
+
+function closeDrawer() {
+  document.getElementById('drawer-overlay').classList.remove('open');
+  document.getElementById('drawer').classList.remove('open');
+}
+
+// ── REMOVE DUPLICATES ──
+function removeDuplicates() {
+  const members = getMembers();
+  const seen = { names: {}, phones: {} };
+  const kept = [], removed = [];
+  members.forEach(m => {
+    const nn = normaliseName(m.name);
+    const np = normalisePhone(m.phone);
+    const isDup = seen.names[nn] || seen.phones[np];
+    if (isDup) { removed.push(m); }
+    else { seen.names[nn] = true; seen.phones[np] = true; kept.push(m); }
+  });
+  if (!removed.length) { showToast('No duplicates found', 'success'); return; }
+  if (!confirm('Found ' + removed.length + ' duplicate(s):\n' + removed.map(m => m.name + ' (' + m.phone + ')').join('\n') + '\n\nRemove them? The most recent entry will be kept.')) return;
+  saveMembers(kept);
+  updateStats(); renderTable();
+  showToast('Removed ' + removed.length + ' duplicate(s)', 'success');
+}
+
+// ── DELETE ──
+function deleteMember(id) {
+  saveMembers(getMembers().filter(m => m.id != id));
+  updateStats(); renderTable();
+  showToast('Member removed');
+}
+
+// ── CLEAR ALL ──
+function clearAll() {
+  if (!confirm('Delete ALL members? This cannot be undone.')) return;
+  saveMembers([]); updateStats(); renderTable();
+  showToast('All members cleared');
+}
+
+// ── CSV EXPORT ──
+function exportCSV() {
+  const members = getMembers();
+  if (!members.length) { showToast('No data to export', 'error'); return; }
+  const rows = [['Name','City','Email','Phone','Skills','Family members','Registered']];
+  members.forEach(m => {
+    const family = parseFamily(m.family).map(f =>
+      [f.name, f.relationship, f.phone].filter(Boolean).join(' ')
+    ).join(' | ');
+    rows.push([m.name, m.city, m.email, m.phone, m.skills || '', family, new Date(m.date).toLocaleString()]);
+  });
+  const csv = rows.map(r => r.map(v => `"${(v||'').replace(/"/g,'""')}"`).join(',')).join('\n');
+  const a = document.createElement('a');
+  a.href = 'data:text/csv;charset=utf-8,' + encodeURIComponent(csv);
+  a.download = 'austin-newar-members.csv';
+  a.click();
+  showToast('CSV downloaded');
+}
+
+// ── TOAST ──
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.className = 'toast' + (type === 'success' ? ' success-toast' : type === 'error' ? ' error-toast' : '');
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2500);
+}
+
+// ── INIT ──
+updateApiBadge();
+</script>
+</body>
+</html>
