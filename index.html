@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Austin Newa Pucha Members</title>
+<title>Austin Newa Pucha Community</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap');
 
@@ -48,28 +48,80 @@ nav {
 
 /* ── HERO ── */
 .form-hero {
-  background: linear-gradient(135deg, #1a1a2e 0%, #2d2b55 100%);
-  color: #fff; padding: 3.5rem 2rem 5rem;
+  background: linear-gradient(135deg, #1a1a2e 0%, #2d2b55 60%, #1e1b4b 100%);
+  color: #fff; padding: 4rem 2rem 5.5rem;
   text-align: center; position: relative; overflow: hidden;
+  min-height: 320px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
 }
-.form-hero::before {
-  content: ''; position: absolute;
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(79,70,229,0.3) 0%, transparent 70%);
-  top: -100px; right: -100px; border-radius: 50%;
+.hero-orb {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  animation: orbFloat 8s ease-in-out infinite;
 }
+.hero-orb-1 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(79,70,229,0.25) 0%, transparent 70%);
+  top: -150px; right: -150px; animation-delay: 0s;
+}
+.hero-orb-2 {
+  width: 300px; height: 300px;
+  background: radial-gradient(circle, rgba(124,58,237,0.2) 0%, transparent 70%);
+  bottom: -80px; left: -80px; animation-delay: -3s;
+}
+.hero-orb-3 {
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(200,168,75,0.15) 0%, transparent 70%);
+  top: 20px; left: 30%; animation-delay: -5s;
+}
+@keyframes orbFloat {
+  0%,100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-20px) scale(1.05); }
+}
+.hero-content { position: relative; z-index: 2; }
 .hero-eyebrow {
-  display: inline-block; font-size: 11px; font-weight: 600;
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 11px; font-weight: 600;
   letter-spacing: 0.12em; text-transform: uppercase; color: var(--gold);
-  margin-bottom: 1rem; border: 1px solid rgba(200,168,75,0.4);
-  padding: 4px 14px; border-radius: 20px;
+  margin-bottom: 1.25rem; border: 1px solid rgba(200,168,75,0.4);
+  padding: 5px 16px; border-radius: 20px;
+  background: rgba(200,168,75,0.08);
+  animation: fadeSlideDown 0.6s ease both;
 }
+.hero-eyebrow::before { content: '✦'; font-size: 8px; }
 .form-hero h1 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.8rem, 5vw, 3rem); font-weight: 700;
-  line-height: 1.15; margin-bottom: 0.75rem;
+  font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700;
+  line-height: 1.15; margin-bottom: 0.85rem;
+  animation: fadeSlideDown 0.6s ease 0.1s both;
 }
-.form-hero p { color: rgba(255,255,255,0.6); font-size: 0.95rem; max-width: 420px; margin: 0 auto; line-height: 1.6; }
+.form-hero p {
+  color: rgba(255,255,255,0.6); font-size: 0.95rem;
+  max-width: 420px; margin: 0 auto 1.5rem; line-height: 1.7;
+  animation: fadeSlideDown 0.6s ease 0.2s both;
+}
+.hero-stats {
+  display: inline-flex; gap: 2rem; margin-top: 0.5rem;
+  animation: fadeSlideDown 0.6s ease 0.3s both;
+}
+.hero-stat { text-align: center; }
+.hero-stat-num {
+  font-size: 1.5rem; font-weight: 700; color: #fff;
+  font-family: 'Playfair Display', serif;
+}
+.hero-stat-label { font-size: 11px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.08em; }
+.hero-divider { width: 1px; background: rgba(255,255,255,0.15); align-self: stretch; }
+
+@keyframes fadeSlideDown {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── FORM CARD ANIMATION ── */
+.form-card { animation: fadeSlideUp 0.5s ease 0.2s both; }
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
 
 /* ── FORM CARD ── */
 .form-card {
@@ -396,6 +448,10 @@ tbody tr:last-child td { border-bottom: none; }
   75% { transform: translateX(6px); }
 }
 
+/* ── SECTION REVEAL ── */
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
 /* ── TOAST ── */
 .toast {
   position: fixed; bottom: 24px; left: 50%;
@@ -437,7 +493,7 @@ tbody tr:last-child td { border-bottom: none; }
 </script>
 
 <nav>
-  <div class="nav-brand">Austin <span>Newa Pucha</span> Members</div>
+  <div class="nav-brand">Austin <span>Newa Pucha</span> <span style="color:var(--ink)">Community</span></div>
   <div class="nav-tabs">
     <button class="nav-tab active" onclick="showPage('form', this)">Register</button>
     <button class="nav-tab" onclick="showPage('admin', this)">Admin</button>
@@ -447,9 +503,30 @@ tbody tr:last-child td { border-bottom: none; }
 <!-- ══════════════════ FORM PAGE ══════════════════ -->
 <div id="page-form" class="page active">
   <div class="form-hero">
-    <div class="hero-eyebrow">Membership Portal</div>
-    <h1>Join Austin Newa Pucha Members</h1>
-    <p>Register your details and your family to become part of our community.</p>
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Membership Portal</div>
+      <h1>Join Austin Newa Pucha Community</h1>
+      <p>Register your details and your family to become part of our growing community.</p>
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="hero-stat-num" id="hero-count">—</div>
+          <div class="hero-stat-label">Members</div>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num" id="hero-families">—</div>
+          <div class="hero-stat-label">Families</div>
+        </div>
+        <div class="hero-divider"></div>
+        <div class="hero-stat">
+          <div class="hero-stat-num">Austin</div>
+          <div class="hero-stat-label">Texas</div>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="form-card">
@@ -906,6 +983,7 @@ async function submitForm(force) {
   btn.textContent = 'Register as member';
   document.getElementById('form-area').style.display = 'none';
   document.getElementById('success-area').classList.add('show');
+  updateHeroStats();
 }
 
 // ── RESET ──
@@ -1219,6 +1297,40 @@ function showToast(msg, type) {
 
 // ── INIT ──
 updateApiBadge();
+updateHeroStats();
+
+// Reveal form sections on scroll
+function initReveal() {
+  const els = document.querySelectorAll('.section-title, .form-card');
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.1 });
+  els.forEach(el => { el.classList.add('reveal'); obs.observe(el); });
+}
+initReveal();
+
+function updateHeroStats() {
+  const members = getMembers();
+  const total = members.length;
+  const families = members.filter(m => {
+    try { return JSON.parse(m.family || '[]').length > 0; } catch { return false; }
+  }).length;
+
+  // Animate count up
+  function countUp(el, target) {
+    if (!el || target === 0) { if(el) el.textContent = target; return; }
+    let current = 0;
+    const step = Math.ceil(target / 20);
+    const timer = setInterval(() => {
+      current = Math.min(current + step, target);
+      el.textContent = current;
+      if (current >= target) clearInterval(timer);
+    }, 50);
+  }
+
+  countUp(document.getElementById('hero-count'), total);
+  countUp(document.getElementById('hero-families'), families);
+}
 </script>
 </body>
 </html>
