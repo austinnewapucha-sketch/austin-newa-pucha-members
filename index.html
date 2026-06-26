@@ -99,17 +99,7 @@ nav {
   max-width: 420px; margin: 0 auto 1.5rem; line-height: 1.7;
   animation: fadeSlideDown 0.6s ease 0.2s both;
 }
-.hero-stats {
-  display: inline-flex; gap: 2rem; margin-top: 0.5rem;
-  animation: fadeSlideDown 0.6s ease 0.3s both;
-}
-.hero-stat { text-align: center; }
-.hero-stat-num {
-  font-size: 1.5rem; font-weight: 700; color: #fff;
-  font-family: 'Playfair Display', serif;
-}
-.hero-stat-label { font-size: 11px; color: rgba(255,255,255,0.45); text-transform: uppercase; letter-spacing: 0.08em; }
-.hero-divider { width: 1px; background: rgba(255,255,255,0.15); align-self: stretch; }
+
 
 @keyframes fadeSlideDown {
   from { opacity: 0; transform: translateY(-12px); }
@@ -510,22 +500,7 @@ tbody tr:last-child td { border-bottom: none; }
       <div class="hero-eyebrow">Membership Portal</div>
       <h1>Join Austin Newa Pucha Community</h1>
       <p>Register your details and your family to become part of our growing community.</p>
-      <div class="hero-stats">
-        <div class="hero-stat">
-          <div class="hero-stat-num" id="hero-count">—</div>
-          <div class="hero-stat-label">Members</div>
-        </div>
-        <div class="hero-divider"></div>
-        <div class="hero-stat">
-          <div class="hero-stat-num" id="hero-families">—</div>
-          <div class="hero-stat-label">Families</div>
-        </div>
-        <div class="hero-divider"></div>
-        <div class="hero-stat">
-          <div class="hero-stat-num">Austin</div>
-          <div class="hero-stat-label">Texas</div>
-        </div>
-      </div>
+
     </div>
   </div>
 
@@ -810,9 +785,9 @@ function addFamilyRow() {
         <input type="text" placeholder="Full name" id="fm-name-${id}">
       </div>
       <div class="form-group" style="margin-bottom:0">
-        <label>Relationship</label>
-        <select id="fm-rel-${id}">
-          <option value="">Select…</option>
+        <label>Relationship <span style="color:var(--accent)">*</span></label>
+        <select id="fm-rel-${id}" style="border-color: var(--border)">
+          <option value="">Select relationship…</option>
           <option>Spouse</option>
           <option>Child</option>
           <option>Parent</option>
@@ -927,6 +902,14 @@ async function submitForm(force) {
   }
   banner.style.display = 'none';
 
+  // Validate family relationship dropdowns
+  if (!validateFamily()) {
+    banner.style.display = 'block';
+    banner.textContent = 'Please select a relationship for each family member.';
+    document.getElementById('form-error-banner').scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+
   const name  = document.getElementById('f-name').value.trim();
   const phone = document.getElementById('f-phone').value.trim();
 
@@ -983,7 +966,6 @@ async function submitForm(force) {
   btn.textContent = 'Register as member';
   document.getElementById('form-area').style.display = 'none';
   document.getElementById('success-area').classList.add('show');
-  updateHeroStats();
 }
 
 // ── RESET ──
@@ -1297,7 +1279,6 @@ function showToast(msg, type) {
 
 // ── INIT ──
 updateApiBadge();
-updateHeroStats();
 
 // Reveal form sections on scroll
 function initReveal() {
@@ -1309,28 +1290,6 @@ function initReveal() {
 }
 initReveal();
 
-function updateHeroStats() {
-  const members = getMembers();
-  const total = members.length;
-  const families = members.filter(m => {
-    try { return JSON.parse(m.family || '[]').length > 0; } catch { return false; }
-  }).length;
-
-  // Animate count up
-  function countUp(el, target) {
-    if (!el || target === 0) { if(el) el.textContent = target; return; }
-    let current = 0;
-    const step = Math.ceil(target / 20);
-    const timer = setInterval(() => {
-      current = Math.min(current + step, target);
-      el.textContent = current;
-      if (current >= target) clearInterval(timer);
-    }, 50);
-  }
-
-  countUp(document.getElementById('hero-count'), total);
-  countUp(document.getElementById('hero-families'), families);
-}
 </script>
 </body>
 </html>
